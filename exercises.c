@@ -137,19 +137,27 @@ int parentesisBalanceados(char *cadena) {
       char c = cadena[i];
 
       if (c == '(' || c == '[' || c == '{') {
-         push(pila, (void*)c);
+         char *apertura = (char *)malloc(sizeof(char));
+         if(apertura == NULL) {
+            return 0;
+         }
+         *apertura = c;
+         push(pila, (void*)apertura);
       } else if (c == ')' || c == ']' || c == '}') {
          if (top(pila) == NULL) {
             return 0;
          }
-         char apertura = (char)top(pila);
-         pop(pila);
-
-         if ((c == ')' && apertura != '(') || 
-            (c == ']' && apertura != '[') || 
-            (c == '}' && apertura != '{')) {
-            return 0; // El paréntesis de cierre no corresponde
+         char *apertura = (char*)pop(pila);
+         if (*apertura != '(' && c == '}') {
+            free(apertura);
+            return 0;
          }
+
+         if (*apertura != '{' && c == '}') {
+            free(apertura);
+            return 0;
+         }
+         free(apertura);
       }
    }
 
