@@ -43,3 +43,14 @@ Fri, Mar 21, 2025  3:19:32 PM:
  tests:  4|1
 total_score: 50/70
 b5ba81d
+Fri, Mar 21, 2025  3:26:26 PM: 
+ exercises.c | 17 +++++++++++++++++
+ 1 file changed, 17 insertions(+)
+In file included from test.c:5:0:
+exercises.c: In function 'parentesisBalanceados':
+exercises.c:147:11: error: return makes integer from pointer without a cast [-Werror=int-conversion]
+    return pop(pila);
+           ^~~~~~~~~
+cc1.exe: all warnings being treated as errors
+Compilation failed
+364dbad
