@@ -134,13 +134,22 @@ int parentesisBalanceados(char *cadena) {
    Stack* pila = create_stack();
 
    for (int i = 0; cadena[i] != '\0'; i++){
-      if (cadena[i] == '(') {
-         push(pila, (void*)1);
-      } else if (cadena[i] == ')') {
+      char c = cadena[i];
+
+      if (c == '(' || c == '[' || c == '{') {
+         push(pila, (void*)c);
+      } else if (c == ')' || c == ']' || c == '}') {
          if (top(pila) == NULL) {
             return 0;
          }
+         char apertura = (char)top(pila);
          pop(pila);
+
+         if ((c == ')' && apertura != '(') || 
+            (c == ']' && apertura != '[') || 
+            (c == '}' && apertura != '{')) {
+            return 0; // El paréntesis de cierre no corresponde
+         }
       }
    }
 
