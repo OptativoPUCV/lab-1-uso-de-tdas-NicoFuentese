@@ -106,3 +106,27 @@ exercises.c:158:42: error: cast from pointer to integer of different size [-Werr
 cc1.exe: all warnings being treated as errors
 Compilation failed
 26960c3
+Sat, Mar 22, 2025 12:31:51 PM: 
+In file included from test.c:5:0:
+exercises.c: In function 'parentesisBalanceados':
+exercises.c:148:12: error: cast from pointer to integer of different size [-Werror=pointer-to-int-cast]
+       if (((char)top(pila)== ')' || (char)top(pila)=='(') && (cadena[i] !=')' && cadena[i]!='('))
+            ^
+exercises.c:148:37: error: cast from pointer to integer of different size [-Werror=pointer-to-int-cast]
+       if (((char)top(pila)== ')' || (char)top(pila)=='(') && (cadena[i] !=')' && cadena[i]!='('))
+                                     ^
+exercises.c:153:17: error: cast from pointer to integer of different size [-Werror=pointer-to-int-cast]
+       else if (((char)top(pila)== '}' || (char)top(pila)=='{') && (cadena[i] !='}' && cadena[i]!='{'))
+                 ^
+exercises.c:153:42: error: cast from pointer to integer of different size [-Werror=pointer-to-int-cast]
+       else if (((char)top(pila)== '}' || (char)top(pila)=='{') && (cadena[i] !='}' && cadena[i]!='{'))
+                                          ^
+exercises.c:158:17: error: cast from pointer to integer of different size [-Werror=pointer-to-int-cast]
+       else if (((char)top(pila)== ']' || (char)top(pila)=='[') && (cadena[i] !=']' && cadena[i]!='['))
+                 ^
+exercises.c:158:42: error: cast from pointer to integer of different size [-Werror=pointer-to-int-cast]
+       else if (((char)top(pila)== ']' || (char)top(pila)=='[') && (cadena[i] !=']' && cadena[i]!='['))
+                                          ^
+cc1.exe: all warnings being treated as errors
+Compilation failed
+3c96c7e
