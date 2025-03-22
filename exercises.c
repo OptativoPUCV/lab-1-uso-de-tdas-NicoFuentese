@@ -129,38 +129,46 @@ paraéntesis balanceados. Retorna 1 si están balanceados,
 */
 
 int parentesisBalanceados(char *cadena) {
-   if (cadena == NULL) return 0;
-
    Stack* pila = create_stack();
-
-   for (int i = 0; cadena[i] != '\0'; i++){
-      char c = cadena[i];
-
-      if (c == '(' || c == '[' || c == '{') {
-         char *apertura = (char *)malloc(sizeof(char));
-         if(apertura == NULL) {
-            return 0;
-         }
-         *apertura = c;
-         push(pila, (void*)apertura);
-      } else if (c == ')' || c == ']' || c == '}') {
-         if (top(pila) == NULL) {
-            return 0;
-         }
-         char *apertura = (char*)pop(pila);
-         if (*apertura != '(' && c == '}') {
-            free(apertura);
-            return 0;
-         }
-
-         if (*apertura != '{' && c == '}') {
-            free(apertura);
-            return 0;
-         }
-         free(apertura);
-      }
+   for(int i = 0;cadena[i]!='\0';i++)
+   {
+   if(cadena[i]=='('||cadena[i]=='{' || cadena[i]=='[')
+   {
+      char* apertura = (char*)malloc(sizeof(char));
+      *apertura = cadena[i];
+      push(pila,apertura);
    }
-
-   return top(pila) == NULL ? 1 : 0;
+   else if (cadena[i]==')'||cadena[i]=='}' || cadena[i]==']')
+   {
+      if (get_size(pila)==0) 
+      {
+         free(pila);
+         return 0;
+      }
+      if (((char)top(pila)== ')' || (char)top(pila)=='(') && (cadena[i] !=')' && cadena[i]!='('))
+      {
+      free(pila);
+      return 0;
+      }
+      else if (((char)top(pila)== '}' || (char)top(pila)=='{') && (cadena[i] !='}' && cadena[i]!='{'))
+      {
+      free(pila);
+      return 0;
+      }
+      else if (((char)top(pila)== ']' || (char)top(pila)=='[') && (cadena[i] !=']' && cadena[i]!='['))
+      {
+      free(pila);
+      return 0;
+      }
+      pop(pila);
+   }
+   }
+   if(get_size(pila)==0){
+   free(pila);
+   return 1;}
+   else {
+      free(pila);
+      return 0;
+   }
 }
 
